@@ -1,0 +1,542 @@
+================================================================================
+VOICE ASSISTANT TEST CONVERSATIONS
+For Voice Recording and ASR Testing
+================================================================================
+
+Instructions:
+- Read each line clearly with natural speech
+- Pause between conversations (marked by ---)
+- Multi-turn conversations should be read in sequence
+- The assistant's expected responses are shown for reference
+
+================================================================================
+SECTION 1: REQUIRED COMMANDS (7 Commands from Specification)
+================================================================================
+
+1. What will the weather be like today in Marburg?
+2. What will the weather be on Friday in Frankfurt?
+3. Will it rain there on Saturday?
+4. Where is my next appointment?
+5. Add an appointment titled XYZ for the 12th of January.
+6. Delete the previously created appointment.
+7. Change the place for my appointment tomorrow.
+
+---
+
+================================================================================
+SECTION 2: WEATHER QUERIES - SINGLE TURN
+================================================================================
+
+--- Basic Weather Queries ---
+What's the weather like today?
+What is the weather today?
+How's the weather?
+Tell me the weather.
+What's it like outside?
+
+--- Weather with Locations ---
+What's the weather in Marburg?
+What's the weather like in Frankfurt?
+Weather in Berlin.
+How is the weather in Munich?
+What's the weather in Hamburg today?
+Tell me the weather for Cologne.
+Weather forecast for Stuttgart.
+What will the weather be in Dresden?
+How's the weather looking in Leipzig?
+Check weather in Dusseldorf.
+
+--- Weather with Days ---
+What's the weather tomorrow?
+Weather on Monday.
+What will the weather be on Tuesday?
+How's the weather on Wednesday?
+Weather forecast for Thursday.
+What's Friday's weather?
+Tell me Saturday's weather.
+What about Sunday's weather?
+
+--- Weather with Location AND Day ---
+What's the weather tomorrow in Berlin?
+How's the weather on Monday in Munich?
+Weather in Hamburg on Tuesday.
+Tell me Wednesday's weather in Cologne.
+What's the forecast for Thursday in Stuttgart?
+What will the weather be like on Friday in Frankfurt?
+Show me Saturday's weather in Marburg.
+
+--- Weather Conditions ---
+Will it rain today?
+Is it going to rain tomorrow?
+Will it rain in Marburg?
+Will it snow today?
+Is it going to snow tomorrow?
+Will it be sunny today?
+Is it cloudy outside?
+Will there be a storm?
+Is it going to be clear today?
+
+--- Temperature Queries ---
+What's the temperature today?
+How hot will it be tomorrow?
+How cold is it in Berlin?
+What's the temperature in Munich?
+How warm will it be on Friday?
+
+---
+
+================================================================================
+SECTION 3: WEATHER QUERIES - MULTI-TURN (Anaphora Resolution)
+================================================================================
+
+--- Conversation 1: "There" Reference ---
+User: What's the weather in Frankfurt?
+[Wait for response]
+User: Will it rain there on Saturday?
+[Wait for response]
+
+--- Conversation 2: Day Follow-up ---
+User: What's the weather like in Berlin?
+[Wait for response]
+User: How about tomorrow?
+[Wait for response]
+User: And on Friday?
+[Wait for response]
+
+--- Conversation 3: Location Carryover ---
+User: Tell me the weather in Munich.
+[Wait for response]
+User: What about Monday?
+[Wait for response]
+User: Will it snow there?
+[Wait for response]
+
+--- Conversation 4: Condition Follow-up ---
+User: What's the weather in Hamburg?
+[Wait for response]
+User: Will it rain there tomorrow?
+[Wait for response]
+
+--- Conversation 5: Extended Weather Conversation ---
+User: What's the weather like in Marburg today?
+[Wait for response]
+User: How about tomorrow?
+[Wait for response]
+User: Will it be sunny on Friday there?
+[Wait for response]
+User: What's the temperature going to be?
+[Wait for response]
+
+---
+
+================================================================================
+SECTION 4: APPOINTMENT QUERIES - SINGLE TURN
+================================================================================
+
+--- Basic Queries ---
+What are my appointments?
+Show me my appointments.
+List my appointments.
+Do I have any appointments?
+What meetings do I have?
+Show my calendar.
+What's on my calendar?
+Check my appointments.
+
+--- Next Appointment ---
+Where is my next appointment?
+What's my next appointment?
+When is my next meeting?
+Tell me about my next appointment.
+What's coming up next?
+My next event.
+
+--- Day-Specific ---
+What appointments do I have today?
+Show me tomorrow's appointments.
+What's on Monday?
+Appointments for Tuesday.
+What meetings do I have on Wednesday?
+Thursday's schedule.
+What's happening Friday?
+Any appointments on Saturday?
+Sunday's events.
+
+--- Week Queries ---
+What's my schedule this week?
+Show me next week's appointments.
+What do I have this week?
+
+---
+
+================================================================================
+SECTION 5: CREATE APPOINTMENT - SINGLE TURN
+================================================================================
+
+--- Basic Creation ---
+Add an appointment.
+Create a new appointment.
+Schedule a meeting.
+Book an appointment.
+Set up a meeting.
+Make an appointment.
+New appointment.
+
+--- With Title ---
+Add an appointment titled Team Meeting.
+Create an appointment called Project Review.
+Schedule a meeting named Sprint Planning.
+Add appointment titled Doctor Visit.
+Create meeting called Weekly Sync.
+Book an appointment named Interview.
+
+--- With Time ---
+Add an appointment at 3 PM.
+Create a meeting at 10:00.
+Schedule appointment for 2:30 PM.
+Book meeting at 9 AM.
+Add appointment at noon.
+
+--- With Day ---
+Add an appointment for tomorrow.
+Create a meeting on Monday.
+Schedule appointment for Tuesday.
+Book a meeting on Friday.
+
+--- With Title and Day ---
+Add an appointment titled Dentist for tomorrow.
+Create meeting called Sprint Planning on Monday.
+Schedule appointment named Lunch Meeting for Friday.
+
+--- Complete Appointments ---
+Add appointment titled Team Sync for Monday at 10 AM.
+Create meeting called Review on Tuesday at 3 PM.
+Schedule appointment named Training for Friday at 2 PM.
+Book meeting called Status Update for tomorrow at 9 AM.
+Add an appointment titled XYZ for the 12th of January.
+
+---
+
+================================================================================
+SECTION 6: CREATE APPOINTMENT - MULTI-TURN
+================================================================================
+
+--- Conversation 1: Missing All Info ---
+User: Add an appointment.
+[Wait for response - should ask for title]
+User: Team Meeting.
+[Wait for response - should ask for time]
+User: 10 AM.
+[Wait for response - should confirm creation]
+
+--- Conversation 2: Missing Time ---
+User: Create appointment called Interview.
+[Wait for response - should ask for time]
+User: Tomorrow at 2 PM.
+[Wait for response - should confirm creation]
+
+--- Conversation 3: Missing Title ---
+User: Add an appointment for Monday at 3 PM.
+[Wait for response - should ask for title]
+User: Project Review.
+[Wait for response - should confirm creation]
+
+--- Conversation 4: Complete Info ---
+User: Schedule meeting called Standup for tomorrow at 9:30 AM.
+[Wait for response - should confirm creation directly]
+
+---
+
+================================================================================
+SECTION 7: UPDATE APPOINTMENT - SINGLE TURN
+================================================================================
+
+--- Basic Update ---
+Update my appointment.
+Modify my meeting.
+Edit my appointment.
+Reschedule my meeting.
+Move my appointment.
+Change my appointment.
+
+--- Change Time ---
+Change the time of my appointment.
+Update the meeting time.
+Move my appointment to 3 PM.
+Reschedule to 10 AM.
+Change appointment to tomorrow.
+
+--- Change Location ---
+Change the location of my meeting.
+Update the place for my appointment.
+Move meeting to Room 10.
+Change location to Building B.
+Change the place for my appointment tomorrow.
+
+--- Change Title ---
+Change the title of my appointment.
+Rename my meeting.
+Update the appointment name.
+
+--- Day-Specific ---
+Change my Monday appointment.
+Update tomorrow's meeting.
+Modify Friday's appointment.
+
+---
+
+================================================================================
+SECTION 8: UPDATE APPOINTMENT - MULTI-TURN
+================================================================================
+
+--- Conversation 1: Select Then Update ---
+User: Update my appointment.
+[Wait for response - may list appointments or ask which one]
+User: The first one.
+[Wait for response - should ask what to change]
+User: Change the time to 4 PM.
+[Wait for response - should confirm update]
+
+--- Conversation 2: Day-Specific Update ---
+User: Change my appointment tomorrow.
+[Wait for response - should ask what to change]
+User: Move it to 2 PM.
+[Wait for response - should confirm update]
+
+--- Conversation 3: Location Update ---
+User: Update the location for my meeting.
+[Wait for response]
+User: Room 15.
+[Wait for response - should confirm update]
+
+---
+
+================================================================================
+SECTION 9: DELETE APPOINTMENT - SINGLE TURN
+================================================================================
+
+--- Basic Delete ---
+Delete my appointment.
+Remove my meeting.
+Cancel my appointment.
+Drop my meeting.
+
+--- Reference Delete ---
+Delete that appointment.
+Remove the last appointment.
+Cancel the previous meeting.
+Delete it.
+Delete the previously created appointment.
+
+--- Day-Specific Delete ---
+Delete my appointment tomorrow.
+Cancel Monday's meeting.
+Remove Friday's appointment.
+
+--- Title-Based Delete ---
+Delete the Team Meeting.
+Cancel the Doctor appointment.
+Remove the Project Review.
+
+---
+
+================================================================================
+SECTION 10: DELETE APPOINTMENT - MULTI-TURN
+================================================================================
+
+--- Conversation 1: Create Then Delete ---
+User: Add appointment titled Test Meeting for tomorrow at 3 PM.
+[Wait for response - should confirm creation]
+User: Delete the previously created appointment.
+[Wait for response - should confirm deletion]
+
+--- Conversation 2: Query Then Delete ---
+User: What are my appointments?
+[Wait for response - should list appointments]
+User: Delete the first one.
+[Wait for response - should confirm deletion]
+
+--- Conversation 3: Selection Delete ---
+User: Delete my appointment.
+[Wait for response - may list appointments]
+User: The Team Meeting.
+[Wait for response - should confirm deletion]
+
+---
+
+================================================================================
+SECTION 11: CONTEXT SWITCHING
+================================================================================
+
+--- Conversation 1: Weather to Appointment ---
+User: What's the weather in Marburg?
+[Wait for response]
+User: What are my appointments for today?
+[Wait for response]
+
+--- Conversation 2: Appointment to Weather ---
+User: Show me my appointments.
+[Wait for response]
+User: What's the weather like?
+[Wait for response]
+
+--- Conversation 3: Create to Query ---
+User: Add an appointment titled Lunch for tomorrow at noon.
+[Wait for response]
+User: What are my appointments tomorrow?
+[Wait for response]
+
+--- Conversation 4: Mixed Operations ---
+User: What's the weather in Frankfurt?
+[Wait for response]
+User: Add appointment called Meeting for Monday at 2 PM.
+[Wait for response]
+User: Will it rain there on Monday?
+[Wait for response]
+User: What are my appointments on Monday?
+[Wait for response]
+
+---
+
+================================================================================
+SECTION 12: NATURAL LANGUAGE VARIATIONS
+================================================================================
+
+--- Polite Requests ---
+Could you please tell me the weather?
+Can you show me my appointments?
+Would you mind adding an appointment?
+Please delete my meeting.
+I would like to update my appointment.
+
+--- Casual Speech ---
+Hey, what's the weather?
+So, any appointments today?
+Um, add a meeting please.
+Like, what's my next appointment?
+
+--- Question Forms ---
+Do you know the weather today?
+Can I see my calendar?
+Is it going to rain?
+Do I have any meetings tomorrow?
+
+--- Command Forms ---
+Tell me the weather.
+Show my appointments.
+Create a meeting.
+Delete that appointment.
+Update the time.
+
+--- Statement Forms ---
+I want to know the weather.
+I need to see my appointments.
+I'd like to add a meeting.
+I want to cancel my appointment.
+
+---
+
+================================================================================
+SECTION 13: EDGE CASES
+================================================================================
+
+--- Short Queries ---
+Weather.
+Appointments.
+Meeting.
+Tomorrow.
+
+--- Different Phrasings ---
+Weather report.
+My schedule.
+Calendar events.
+Upcoming meetings.
+
+--- With Filler Words ---
+Um, what's the weather today please?
+So like, what are my appointments?
+Hey, can you tell me the weather?
+Okay so, show me my calendar.
+
+--- Extra Context ---
+I'm going outside, what's the weather?
+Before I leave, show me my appointments.
+Since I have a meeting, what's on my calendar?
+For my trip tomorrow, what's the weather in Berlin?
+
+---
+
+================================================================================
+SECTION 14: FULL SCENARIO CONVERSATIONS
+================================================================================
+
+--- Scenario 1: Planning a Day ---
+User: What's the weather like today in Marburg?
+[Wait for response]
+User: Great. What appointments do I have today?
+[Wait for response]
+User: Add a meeting called Lunch with Team for today at noon.
+[Wait for response]
+User: What's my schedule now?
+[Wait for response]
+
+--- Scenario 2: Trip Planning ---
+User: What will the weather be on Friday in Frankfurt?
+[Wait for response]
+User: Will it rain there on Saturday?
+[Wait for response]
+User: Add an appointment titled Frankfurt Trip for Friday at 8 AM.
+[Wait for response]
+User: Where is my next appointment?
+[Wait for response]
+
+--- Scenario 3: Appointment Management ---
+User: Show me my appointments.
+[Wait for response]
+User: Add appointment titled Meeting for tomorrow at 10 AM.
+[Wait for response]
+User: Change the time to 11 AM.
+[Wait for response]
+User: What are my appointments tomorrow?
+[Wait for response]
+User: Delete the Meeting appointment.
+[Wait for response]
+
+--- Scenario 4: Complete Required Commands Flow ---
+User: What will the weather be like today in Marburg?
+[Wait for response]
+User: What will the weather be on Friday in Frankfurt?
+[Wait for response]
+User: Will it rain there on Saturday?
+[Wait for response]
+User: Where is my next appointment?
+[Wait for response]
+User: Add an appointment titled XYZ for the 12th of January.
+[Wait for response - may ask for time]
+User: 10 AM.
+[Wait for response]
+User: Delete the previously created appointment.
+[Wait for response]
+User: Add an appointment titled Test for tomorrow at 3 PM.
+[Wait for response]
+User: Change the place for my appointment tomorrow.
+[Wait for response - should ask for new location]
+User: Room 5.
+[Wait for response]
+
+---
+
+================================================================================
+END OF TEST CONVERSATIONS
+================================================================================
+
+Total Single-Turn Commands: ~150
+Total Multi-Turn Conversations: ~25
+Total Scenario Conversations: 4
+
+Notes:
+- Some commands may trigger multi-turn dialogue if information is missing
+- The assistant should handle context from previous turns
+- "There" references should resolve to the last mentioned location
+- "Previously created" should reference the last created appointment
+================================================================================

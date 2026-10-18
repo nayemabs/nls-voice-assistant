@@ -1,0 +1,77 @@
+# ============================================================
+# Docker Ignore File
+# Excludes unnecessary files from Docker build context
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.manifest
+*.spec
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Test audio files (large, not needed in container)
+data/Shibin/
+data/*.m4a
+data/*.mp3
+data/*.wav
+
+# Evaluation outputs (generated, not needed in build)
+tests/evaluation/*.json
+tests/evaluation/*.md
+tests/evaluation/*.pdf
+
+# Documentation (not needed in container)
+*.md
+!README.md
+
+# Local config
+.env
+.env.local
+*.local
+
+# Cache directories
+.cache/
+*.cache
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Temporary files
+tmp/
+temp/
+*.tmp

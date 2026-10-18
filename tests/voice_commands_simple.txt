@@ -1,0 +1,191 @@
+VOICE ASSISTANT TEST COMMANDS
+Read each line clearly. Pause 2-3 seconds between commands.
+
+=== REQUIRED COMMANDS (7) ===
+1. What will the weather be like today in Marburg?
+2. What will the weather be on Friday in Frankfurt?
+3. Will it rain there on Saturday?
+4. Where is my next appointment?
+5. Add an appointment titled XYZ for the 12th of January.
+6. Delete the previously created appointment.
+7. Change the place for my appointment tomorrow.
+
+=== WEATHER - LOCATION (20) ===
+8. What's the weather in Marburg?
+9. What's the weather like in Frankfurt?
+10. Weather in Berlin.
+11. How is the weather in Munich?
+12. What's the weather in Hamburg today?
+13. Tell me the weather for Cologne.
+14. Weather forecast for Stuttgart.
+15. What will the weather be in Dresden?
+16. How's the weather looking in Leipzig?
+17. Check weather in Dusseldorf.
+18. What's the weather in Bonn?
+19. How's the weather in Hannover?
+20. Weather in Bremen?
+21. What's the temperature in Essen?
+22. Is it cold in Nuremberg?
+23. How warm is it in Dortmund?
+24. What's it like in Duisburg?
+25. Weather report for Bochum.
+26. Tell me about the weather in Wuppertal.
+27. How's the weather in Bielefeld?
+
+=== WEATHER - DAYS (15) ===
+28. What's the weather tomorrow?
+29. Weather on Monday.
+30. What will the weather be on Tuesday?
+31. How's the weather on Wednesday?
+32. Weather forecast for Thursday.
+33. What's Friday's weather?
+34. Tell me Saturday's weather.
+35. What about Sunday's weather?
+36. What's the weather this weekend?
+37. How will the weather be next week?
+38. What's tomorrow's forecast?
+39. Is it going to be nice on Monday?
+40. Weather for the day after tomorrow.
+41. What's the outlook for Tuesday?
+42. How does Wednesday look?
+
+=== WEATHER - CONDITIONS (15) ===
+43. Will it rain today?
+44. Is it going to rain tomorrow?
+45. Will it rain in Marburg?
+46. Will it snow today?
+47. Is it going to snow tomorrow?
+48. Will it be sunny today?
+49. Is it cloudy outside?
+50. Will there be a storm?
+51. Is it going to be clear today?
+52. Will it be foggy tomorrow?
+53. Is there going to be thunder?
+54. Will it be windy?
+55. Is it misty outside?
+56. Will there be showers?
+57. Is the sky clear?
+
+=== WEATHER - COMBINED (10) ===
+58. What's the weather tomorrow in Berlin?
+59. How's the weather on Monday in Munich?
+60. Weather in Hamburg on Tuesday.
+61. Tell me Wednesday's weather in Cologne.
+62. What's the forecast for Thursday in Stuttgart?
+63. Will it rain in Frankfurt on Friday?
+64. Is it going to snow in Dresden on Saturday?
+65. How warm will it be in Leipzig on Sunday?
+66. What's Monday's temperature in Bonn?
+67. Will it be sunny in Bremen tomorrow?
+
+=== APPOINTMENTS - QUERIES (20) ===
+68. What are my appointments?
+69. Show me my appointments.
+70. List my appointments.
+71. Do I have any appointments?
+72. What meetings do I have?
+73. Show my calendar.
+74. What's on my calendar?
+75. Check my appointments.
+76. Where is my next appointment?
+77. What's my next appointment?
+78. When is my next meeting?
+79. Tell me about my next appointment.
+80. What's coming up next?
+81. What appointments do I have today?
+82. Show me tomorrow's appointments.
+83. What's on Monday?
+84. Appointments for Tuesday.
+85. What meetings do I have on Wednesday?
+86. Thursday's schedule.
+87. What's happening Friday?
+
+=== APPOINTMENTS - CREATE (25) ===
+88. Add an appointment.
+89. Create a new appointment.
+90. Schedule a meeting.
+91. Book an appointment.
+92. Set up a meeting.
+93. Make an appointment.
+94. New appointment.
+95. Add an appointment titled Team Meeting.
+96. Create an appointment called Project Review.
+97. Schedule a meeting named Sprint Planning.
+98. Add appointment titled Doctor Visit.
+99. Create meeting called Weekly Sync.
+100. Add an appointment at 3 PM.
+101. Create a meeting at 10:00.
+102. Schedule appointment for 2:30 PM.
+103. Book meeting at 9 AM.
+104. Add an appointment for tomorrow.
+105. Create a meeting on Monday.
+106. Schedule appointment for Tuesday.
+107. Book a meeting on Friday.
+108. Add an appointment titled Dentist for tomorrow.
+109. Create meeting called Sprint Planning on Monday.
+110. Add appointment titled Team Sync for Monday at 10 AM.
+111. Create meeting called Review on Tuesday at 3 PM.
+112. Schedule appointment named Training for Friday at 2 PM.
+
+=== APPOINTMENTS - UPDATE (15) ===
+113. Update my appointment.
+114. Modify my meeting.
+115. Edit my appointment.
+116. Reschedule my meeting.
+117. Move my appointment.
+118. Change my appointment.
+119. Change the time of my appointment.
+120. Update the meeting time.
+121. Move my appointment to 3 PM.
+122. Change the location of my meeting.
+123. Update the place for my appointment.
+124. Move meeting to Room 10.
+125. Change my Monday appointment.
+126. Update tomorrow's meeting.
+127. Modify Friday's appointment.
+
+=== APPOINTMENTS - DELETE (15) ===
+128. Delete my appointment.
+129. Remove my meeting.
+130. Cancel my appointment.
+131. Drop my meeting.
+132. Delete that appointment.
+133. Remove the last appointment.
+134. Cancel the previous meeting.
+135. Delete my appointment tomorrow.
+136. Cancel Monday's meeting.
+137. Remove Friday's appointment.
+138. Delete the Team Meeting.
+139. Cancel the Doctor appointment.
+140. I want to delete my appointment.
+141. Can you cancel my meeting?
+142. Please remove my appointment.
+
+=== NATURAL VARIATIONS (15) ===
+143. Could you please tell me the weather?
+144. Can you show me my appointments?
+145. Would you mind adding an appointment?
+146. Hey, what's the weather?
+147. So, any appointments today?
+148. Tell me the weather.
+149. Show my appointments.
+150. Create a meeting.
+151. Delete that appointment.
+152. I want to know the weather.
+153. I need to see my appointments.
+154. I'd like to add a meeting.
+155. What's it like outside?
+156. Am I free tomorrow?
+157. Is my calendar empty today?
+
+=== EDGE CASES (8) ===
+158. Weather.
+159. Appointments.
+160. Meeting.
+161. WHAT'S THE WEATHER.
+162. What's The Weather In MARBURG.
+163. Um, what's the weather today please?
+164. So like, what are my appointments?
+165. I'm going outside, what's the weather?
+
+TOTAL: 165 commands

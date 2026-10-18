@@ -1,0 +1,229 @@
+# ============================================================
+# Voice Assistant Docker Compose
+# Hybrid NLU with GLiNER + Faster-Whisper ASR
+# Supports: CPU (any computer), CUDA GPU
+# Note: Apple Silicon MPS only works natively (not in Docker)
+# ============================================================
+
+services:
+  # ============================================================
+  # CPU Version with Hybrid NLU (Default - works on any computer)
+  # Usage: docker compose up voice-assistant
+  # ============================================================
+  voice-assistant:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: python:3.11-slim
+        COMPUTE_TYPE: int8
+        WHISPER_MODEL: small
+        USE_HYBRID_NLU: "true"
+    container_name: nls-voice-assistant
+    image: voice-assistant:hybrid-cpu
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE_TYPE=int8
+      - WHISPER_MODEL_SIZE=small
+      - USE_HYBRID_NLU=true
+      - HF_HOME=/root/.cache/huggingface
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - whisper-cache:/root/.cache
+      - huggingface-cache:/root/.cache/huggingface
+      - piper-cache:/root/.local/share/piper-tts
+    command: ["python", "main.py", "--text"]
+    restart: "no"
+    profiles:
+      - cpu
+      - default
+
+  # ============================================================
+  # CPU Version with Regex NLU (Lightweight, faster startup)
+  # Usage: docker compose --profile regex up voice-assistant-regex
+  # ============================================================
+  voice-assistant-regex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: python:3.11-slim
+        COMPUTE_TYPE: int8
+        WHISPER_MODEL: small
+        USE_HYBRID_NLU: "false"
+    container_name: nls-voice-assistant-regex
+    image: voice-assistant:regex-cpu
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE_TYPE=int8
+      - WHISPER_MODEL_SIZE=small
+      - USE_HYBRID_NLU=false
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - whisper-cache:/root/.cache
+    command: ["python", "main.py", "--text"]
+    restart: "no"
+    profiles:
+      - regex
+
+  # ============================================================
+  # CUDA GPU Version with Hybrid NLU (NVIDIA GPUs)
+  # Requires: nvidia-container-toolkit installed on host
+  # Usage: docker compose --profile cuda up voice-assistant-cuda
+  # ============================================================
+  voice-assistant-cuda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Use NVIDIA CUDA base image
+        BASE_IMAGE: nvidia/cuda:12.1-runtime-ubuntu22.04
+        COMPUTE_TYPE: float16
+        WHISPER_MODEL: small
+        USE_HYBRID_NLU: "true"
+    container_name: nls-voice-assistant-cuda
+    image: voice-assistant:hybrid-cuda
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WHISPER_DEVICE=cuda
+      - WHISPER_COMPUTE_TYPE=float16
+      - WHISPER_MODEL_SIZE=small
+      - USE_HYBRID_NLU=true
+      - NVIDIA_VISIBLE_DEVICES=all
+      - HF_HOME=/root/.cache/huggingface
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - whisper-cache:/root/.cache
+      - huggingface-cache:/root/.cache/huggingface
+      - piper-cache:/root/.local/share/piper-tts
+    # NVIDIA GPU runtime
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: ["python", "main.py", "--text"]
+    restart: "no"
+    profiles:
+      - cuda
+      - gpu
+
+  # ============================================================
+  # Evaluation Runner with Hybrid NLU (for batch testing)
+  # Usage: docker compose --profile evaluate up evaluator
+  # ============================================================
+  evaluator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USE_HYBRID_NLU: "true"
+    container_name: nls-evaluator
+    image: voice-assistant:hybrid-cpu
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE_TYPE=int8
+      - USE_HYBRID_NLU=true
+      - HF_HOME=/root/.cache/huggingface
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./tests:/app/tests
+      - whisper-cache:/root/.cache
+      - huggingface-cache:/root/.cache/huggingface
+    command: ["python", "evaluate.py", "-d", "/app/data/Shibin", "-c", "/app/tests/voice_commands_simple.txt", "--hybrid"]
+    restart: "no"
+    profiles:
+      - evaluate
+
+  # ============================================================
+  # Evaluation Runner with Regex NLU (faster evaluation)
+  # Usage: docker compose --profile evaluate-regex up evaluator-regex
+  # ============================================================
+  evaluator-regex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USE_HYBRID_NLU: "false"
+    container_name: nls-evaluator-regex
+    image: voice-assistant:regex-cpu
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE_TYPE=int8
+      - USE_HYBRID_NLU=false
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./tests:/app/tests
+      - whisper-cache:/root/.cache
+    command: ["python", "evaluate.py", "-d", "/app/data/Shibin", "-c", "/app/tests/voice_commands_simple.txt"]
+    restart: "no"
+    profiles:
+      - evaluate-regex
+
+  # ============================================================
+  # Voice Mode with Microphone (Linux only)
+  # Requires: PulseAudio running on host
+  # Usage: XDG_RUNTIME_DIR=/run/user/$(id -u) docker compose --profile voice up voice-assistant-mic
+  # ============================================================
+  voice-assistant-mic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USE_HYBRID_NLU: "true"
+    container_name: nls-voice-assistant-mic
+    image: voice-assistant:hybrid-cpu
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONUNBUFFERED=1
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE_TYPE=int8
+      - USE_HYBRID_NLU=true
+      - PULSE_SERVER=unix:/run/user/1000/pulse/native
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - whisper-cache:/root/.cache
+      - huggingface-cache:/root/.cache/huggingface
+      - piper-cache:/root/.local/share/piper-tts
+      # PulseAudio socket for microphone access (Linux only)
+      - /run/user/1000/pulse/native:/run/user/1000/pulse/native
+      - ~/.config/pulse/cookie:/root/.config/pulse/cookie
+    devices:
+      - /dev/snd:/dev/snd
+    group_add:
+      - audio
+    command: ["python", "main.py", "--voice"]
+    restart: "no"
+    profiles:
+      - voice
+      - mic
+
+# ============================================================
+# Persistent volumes for model caching
+# ============================================================
+volumes:
+  whisper-cache:
+    name: nls-whisper-cache
+  huggingface-cache:
+    name: nls-huggingface-cache
+  piper-cache:
+    name: nls-piper-cache

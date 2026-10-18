@@ -1,0 +1,56 @@
+# ============================================================
+# Voice Assistant Dependencies
+# ============================================================
+
+# Core dependencies
+requests>=2.31.0
+python-dateutil>=2.8.2
+numpy>=1.24.0
+SpeechRecognition>=3.10.0
+
+# ASR Engine: faster-whisper (4x faster than OpenAI whisper)
+# Uses CTranslate2 backend - supports CPU (int8) and CUDA (float16)
+faster-whisper>=1.0.0
+
+# TTS Engine: Piper (fast, high-quality neural TTS)
+piper-tts>=1.2.0
+
+# TTS Fallback: pyttsx3 (cross-platform, no model download)
+pyttsx3>=2.90
+
+# Optional: PyAudio for microphone input (voice mode only)
+pyaudio>=0.2.14
+
+# ============================================================
+# GPU Support (install separately if needed)
+# ============================================================
+# For NVIDIA CUDA support, install:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+#
+# For Apple Silicon (MPS), install:
+#   pip install torch  # MPS support included in standard torch
+#
+# Note: faster-whisper uses ctranslate2 which has its own CUDA support
+# ============================================================
+
+# ============================================================
+# NLU Enhancement: GLiNER for Zero-Shot Entity Extraction
+# ============================================================
+# GLiNER is a small, efficient model for named entity recognition
+# that works zero-shot (no training needed)
+gliner>=0.2.0
+
+# spaCy for text processing pipeline (optional but recommended)
+# Install with: pip install spacy && python -m spacy download en_core_web_sm
+spacy>=3.7.0
+
+# RapidFuzz for fuzzy string matching (handles typos/variations)
+rapidfuzz>=3.0.0
+
+# ============================================================
+# Fallback engines (optional, for compatibility)
+# ============================================================
+# Uncomment if you need the original whisper:
+# openai-whisper
+# tiktoken
+# more-itertools

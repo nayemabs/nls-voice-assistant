@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Audio files
+*.wav
+*.mp3
+*.ogg
+
+# Models (will be downloaded on first run)
+*.pt
+*.pth
+
+# Test outputs
+test_output/
+
+
+# Local credentials and runtime data
+.env
+.env.*
+!.env.example
+credentials*.json
+token*.json
+*.pem
+*.key
+data/
+*.m4a
+*.flac
+*.onnx
+*.safetensors
+.venv/
+# Generated evaluation runs and third-party teaching PDFs
+tests/evaluation*/
+docs/*.pdf
